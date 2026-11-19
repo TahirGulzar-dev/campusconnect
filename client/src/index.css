@@ -1,0 +1,222 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --color-brand-primary: #007c43;
+  --color-brand-primary-hover: #006238;
+  --color-brand-forest: #073b29;
+  --color-brand-mint: #e8f5ed;
+  --color-brand-canvas: #f7f8f4;
+  --color-brand-ink: #172a22;
+  --color-brand-muted: #4b6256;
+  --color-brand-border: #d8e5dc;
+}
+
+@layer base {
+  body {
+    @apply bg-brand-canvas font-sans text-brand-ink antialiased;
+  }
+  h1,
+  h2 {
+    @apply font-display;
+  }
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    @apply outline-none;
+  }
+  button {
+    @apply cursor-pointer disabled:cursor-not-allowed;
+  }
+  :focus-visible {
+    @apply ring-brand-primary ring-2 ring-offset-2;
+  }
+}
+
+@layer components {
+  .auth-page {
+    @apply grid min-h-screen bg-white lg:grid-cols-[1.05fr_.95fr];
+  }
+  .auth-brand-panel {
+    @apply from-brand-primary-hover via-brand-forest to-brand-forest relative hidden min-h-screen flex-col justify-between overflow-hidden bg-gradient-to-br p-12 lg:flex xl:p-16;
+  }
+  .auth-brand-panel:before {
+    content: "";
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: linear-gradient(to bottom right, black, transparent 75%);
+    @apply pointer-events-none absolute inset-0;
+  }
+  .auth-form-panel {
+    @apply flex min-h-screen items-center justify-center px-5 py-10 sm:px-12;
+  }
+  .auth-mobile-logo {
+    @apply absolute left-5 top-6 lg:hidden;
+  }
+  .auth-orb {
+    @apply absolute rounded-full border border-emerald-100/10;
+  }
+  .auth-orb-one {
+    @apply -right-40 top-36 h-[560px] w-[560px] bg-emerald-300/10;
+  }
+  .auth-orb-two {
+    @apply -bottom-60 -left-32 h-[500px] w-[500px] bg-white/5;
+  }
+  .eyebrow {
+    @apply text-brand-primary text-[11px] font-bold tracking-[.16em];
+  }
+  .field-label {
+    @apply text-brand-ink mb-2 block text-xs font-semibold;
+  }
+  .field {
+    @apply border-brand-border text-brand-ink hover:border-brand-primary/50 focus:border-brand-primary focus:ring-brand-mint placeholder:text-brand-muted/60 disabled:bg-brand-canvas disabled:text-brand-muted/60 block h-11 w-full rounded-lg border bg-white px-3.5 text-sm transition focus:ring-3;
+  }
+  textarea.field {
+    @apply h-auto py-3;
+  }
+  .field-error {
+    @apply border-rose-400 focus:border-rose-500 focus:ring-rose-100;
+  }
+  .field-icon {
+    @apply text-brand-muted/70 hover:text-brand-ink absolute right-1 top-1 grid h-9 w-10 place-items-center;
+  }
+  .error-text {
+    @apply mt-1.5 block text-xs font-medium text-rose-600;
+  }
+  .readonly-field {
+    @apply border-brand-border bg-brand-mint text-brand-primary-hover flex min-h-12 items-center gap-2 rounded-lg border px-3 text-sm font-medium leading-5;
+  }
+  .text-link {
+    @apply text-brand-primary hover:text-brand-primary-hover font-semibold hover:underline;
+  }
+  .demo-chip {
+    @apply border-brand-border text-brand-muted hover:border-brand-primary/40 hover:bg-brand-mint hover:text-brand-primary rounded-full border bg-white px-3 py-1.5 text-xs font-semibold transition;
+  }
+  .btn {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-4 text-sm font-semibold transition disabled:opacity-60;
+  }
+  .btn-primary {
+    @apply bg-brand-primary hover:bg-brand-primary-hover active:bg-brand-forest text-white shadow-sm shadow-emerald-950/10;
+  }
+  .btn-secondary {
+    @apply border-brand-border text-brand-ink hover:border-brand-primary/30 hover:bg-brand-mint hover:text-brand-primary-hover border bg-white;
+  }
+  .btn-danger {
+    @apply bg-rose-600 text-white hover:bg-rose-700;
+  }
+  .btn-ghost {
+    @apply text-brand-muted hover:bg-brand-mint;
+  }
+  .alert {
+    @apply flex items-start gap-2.5 rounded-lg border p-3.5 text-xs font-medium leading-5;
+  }
+  .alert-error {
+    @apply border-rose-200 bg-rose-50 text-rose-700;
+  }
+  .alert-success {
+    @apply border-emerald-200 bg-emerald-50 text-emerald-700;
+  }
+  .alert-info {
+    @apply border-brand-border bg-brand-mint text-brand-primary-hover;
+  }
+  .spinner {
+    @apply h-4 w-4 animate-spin rounded-full border-2 border-current border-r-transparent;
+  }
+  .sidebar {
+    @apply border-brand-border fixed inset-y-0 left-0 z-50 flex w-[272px] -translate-x-full flex-col border-r bg-white p-6 shadow-xl transition-transform duration-200 lg:translate-x-0 lg:shadow-none;
+  }
+  .sidebar-open {
+    @apply translate-x-0;
+  }
+  .nav-item {
+    @apply text-brand-muted hover:bg-brand-canvas hover:text-brand-ink flex min-h-11 w-full items-center gap-3 rounded-lg px-3 text-left text-sm font-semibold transition;
+  }
+  .nav-active {
+    @apply bg-brand-mint text-brand-primary hover:bg-brand-mint hover:text-brand-primary-hover;
+  }
+  .topbar {
+    @apply border-brand-border flex h-[72px] items-center border-b bg-white px-5 sm:px-7 lg:px-9;
+  }
+  .avatar {
+    @apply bg-brand-mint text-brand-primary grid h-9 w-9 place-items-center rounded-full text-xs font-bold;
+  }
+  .icon-button {
+    @apply text-brand-muted hover:bg-brand-mint hover:text-brand-ink grid h-9 w-9 place-items-center rounded-lg transition;
+  }
+  .card {
+    @apply border-brand-border rounded-xl border bg-white shadow-[0_1px_3px_rgba(23,42,34,.04)];
+  }
+  .card-header {
+    @apply border-brand-border flex items-center justify-between border-b p-5 sm:px-6;
+  }
+  .section-title {
+    @apply text-brand-ink text-sm font-bold;
+  }
+  .status-badge {
+    @apply inline-flex w-fit items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-1 text-[11px] font-bold ring-1 ring-inset;
+  }
+  .status-dot {
+    @apply h-1.5 w-1.5 rounded-full bg-current;
+  }
+  .select-field {
+    @apply border-brand-border text-brand-muted focus:border-brand-primary focus:ring-brand-mint h-10 min-w-36 rounded-lg border bg-white px-3 text-xs font-semibold focus:ring-2;
+  }
+  .search-field {
+    @apply border-brand-border focus-within:border-brand-primary focus-within:ring-brand-mint text-brand-muted/70 flex h-10 min-w-0 items-center gap-2 rounded-lg border bg-white px-3 focus-within:ring-2;
+  }
+  .search-field input {
+    @apply text-brand-ink placeholder:text-brand-muted/60 min-w-0 flex-1 text-xs;
+  }
+  .data-table {
+    @apply w-full border-collapse text-left;
+  }
+  .data-table th {
+    @apply bg-brand-canvas text-brand-muted px-6 py-3 text-[10px] font-bold uppercase tracking-wider;
+  }
+  .data-table td {
+    @apply border-brand-border border-t px-6 py-4 align-middle;
+  }
+  .data-table tbody tr {
+    @apply hover:bg-brand-mint cursor-pointer transition;
+  }
+  .mobile-complaint-card {
+    @apply border-brand-border block w-full rounded-xl border bg-white p-4 shadow-sm transition active:scale-[.99];
+  }
+  .upload-zone {
+    @apply border-brand-border bg-brand-canvas text-brand-muted/70 hover:border-brand-primary/60 hover:bg-brand-mint hover:text-brand-primary mt-4 flex min-h-32 cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed transition;
+  }
+  .timeline {
+    @apply relative;
+  }
+  .timeline:before {
+    content: "";
+    @apply bg-brand-border absolute bottom-4 left-[13px] top-3 w-px;
+  }
+  .timeline-item {
+    @apply relative flex gap-3.5 pb-6 last:pb-0;
+  }
+  .timeline-dot {
+    @apply bg-brand-mint text-brand-primary ring-brand-border relative z-10 grid h-7 w-7 shrink-0 place-items-center rounded-full border-2 border-white ring-1;
+  }
+  .modal-backdrop {
+    @apply bg-brand-forest/50 fixed inset-0 z-[60] grid place-items-center p-5 backdrop-blur-[2px];
+  }
+  .modal {
+    @apply w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl;
+  }
+}
+
+@media (max-width: 639px) {
+  .card-header {
+    align-items: stretch;
+  }
+  .data-table {
+    min-width: 760px;
+  }
+}
